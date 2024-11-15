@@ -13,45 +13,42 @@ namespace DesafioProjetoHospedagem.Models
             DiasReservados = diasReservados;
         }
 
+        // Cadastrar os hóspedes
         public void CadastrarHospedes(List<Pessoa> hospedes)
         {
-            // TODO: Verificar se a capacidade é maior ou igual ao número de hóspedes sendo recebido
-            // *IMPLEMENTE AQUI*
-            if (true)
+            // Verificar se a capacidade é maior ou igual ao número de hóspedes
+            if (Suite.Capacidade >= hospedes.Count)
             {
                 Hospedes = hospedes;
             }
             else
             {
-                // TODO: Retornar uma exception caso a capacidade seja menor que o número de hóspedes recebido
-                // *IMPLEMENTE AQUI*
+                throw new InvalidOperationException("A quantidade de hóspedes excede a capacidade da suíte.");
             }
         }
 
+        // Cadastrar a suíte
         public void CadastrarSuite(Suite suite)
         {
             Suite = suite;
         }
 
+        // Obter a quantidade de hóspedes
         public int ObterQuantidadeHospedes()
         {
-            // TODO: Retorna a quantidade de hóspedes (propriedade Hospedes)
-            // *IMPLEMENTE AQUI*
-            return 0;
+            return Hospedes.Count;
         }
 
+        // Calcular o valor da diária com possível desconto
         public decimal CalcularValorDiaria()
         {
-            // TODO: Retorna o valor da diária
-            // Cálculo: DiasReservados X Suite.ValorDiaria
-            // *IMPLEMENTE AQUI*
-            decimal valor = 0;
+            // Calcular o valor base da diária
+            decimal valor = DiasReservados * Suite.ValorDiaria;
 
-            // Regra: Caso os dias reservados forem maior ou igual a 10, conceder um desconto de 10%
-            // *IMPLEMENTE AQUI*
-            if (true)
+            // Se a reserva for maior ou igual a 10 dias, aplicar 10% de desconto
+            if (DiasReservados >= 10)
             {
-                valor = 0;
+                valor -= valor * 0.10m; // Aplicar desconto de 10%
             }
 
             return valor;
